@@ -3,6 +3,7 @@ import '../App.css';
 import api from "../actions/api.js";
 import  './register.css'
 import sidImg from '../images/fash.png';
+import {Link} from "react-router-dom";
 
 const initialState = {
     name: "",
@@ -159,11 +160,14 @@ class Register extends React.Component {
                                     </div>
 
                                     <div class="col-md-6 offset-md-4">
-                                        <button type="submit" className="btn btn-primary register-btn float-right">
+                                        <button type="submit" className="btn btn-primary btn-light border-dark float-right">
                                             Register
                                         </button>
                                     </div>
                                 </form>
+
+                                <div className="p-2 mt-5 small">Already have an Account ? <Link to={"/login"} className=" p-1 pl-2 pr-2 btn-link bg-light border rounded-pill">Sign in</Link></div>
+
                             </div>
                         </div>
                     </div>
