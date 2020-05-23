@@ -7,8 +7,13 @@ class Users extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: []
+            users: [],
+            search: ""
         }
+    }
+
+    updateSearch(event){
+        this.setState({search: event.target.value.substr(0,20)})
     }
 
     componentDidMount() {
@@ -70,17 +75,30 @@ class Users extends React.Component {
     render (){
         if(localStorage.getItem('email')){
             const {users} = this.state;
+
+            let filteredUser = users.filter(
+                (user) =>{
+                    return user.email.indexOf(this.state.search) !== -1;
+                }
+            );
+
             return (
                 <div class="container">
                 <br></br><br></br>
                     <div class="row justify-content-center">
                         <div class="col-md-12">
                             <div class="card shadow-sm">
-                                <div class="card-header">User Management</div>
+                                <div class="card-header form-card-header text-white"><i className="fa fa-user p-2"></i>User Management</div>
                                 <div class="card-body">
 
-                                    <table class="table">
-                                        <thead>
+                                    <div className="form-group row">
+                                        <label  className=" pl-2 m-2">Search Users: </label>
+                                        <i className="fa fa-search p-2 bg-dark text-light"></i>
+                                        <input type="text" className="col-md-5 float-right form-control" placeholder="Enter user email" value={this.state.search} onChange={this.updateSearch.bind(this)} />
+                                    </div>
+
+                                    <table className="table table-hover table-responsive-lg shadow-sm">
+                                        <thead className="bg-light text-dark">
                                             <tr>
                                                 <th class="tableTh">Name</th>
                                                 <th class="tableTh">Email</th>
@@ -92,7 +110,7 @@ class Users extends React.Component {
                                         </thead>
                                         <tbody>
                                         {
-                                            users.map((user) =>
+                                            filteredUser.map((user) =>
 
                                             <tr>
                                                 <td class="tableTh">{ user.name }</td>
