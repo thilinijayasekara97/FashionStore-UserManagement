@@ -7,6 +7,10 @@
   pointer-events: none;
 }
 
+.form-card-header{
+  background-image: linear-gradient(to right, darkcyan , blueviolet);
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
